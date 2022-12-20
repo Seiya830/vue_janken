@@ -1,20 +1,38 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { defineComponent, reactive } from 'vue'
+import Game, { ActionPonType, Te } from './components/Game.vue'
+import Score, { ScoreType, Judgment } from './components/Score.vue'
+// import { ref } from 'vue';
+
+type State = {
+  scores: ScoreType[];
+}
+
+  export default defineComponent({
+    name: 'Jyanken',
+    components: {
+      Game, Score
+    },
+    setup () {
+      const state = reactive<State>({ scores: [] })
+      const pon: ActionPonType = (human: Te) => {
+        const computer: Te = Math.floor(Math.random() * 3)
+      }
+    }
+  })
+
+
+// const name = ref('田中太郎');
 </script>
 
 <template>
-  <header>
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <h1>こんにちは！{{ name }}さん！！！！！</h1>
+  <div>
+    <h1>じゃんけんぽん！</h1>
+    <Game v-bind:actionPon="pon"></Game>
+    <Score v-bind:scores="state.scores"></Score>
+  </div>
 </template>
 
 <style scoped>
