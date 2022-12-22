@@ -1,37 +1,29 @@
 <script setup lang="ts">
-import { defineComponent, reactive } from 'vue'
-import Game, { ActionPonType, Te } from './components/Game.vue'
-import Score, { ScoreType, Judgment } from './components/Score.vue'
-// import { ref } from 'vue';
+import { defineComponent, reactive, ref, watch } from 'vue'
+import { Game } from '@/components/Game.vue'
+import { Score } from '@/components/Score.vue'
 
-type State = {
-  scores: ScoreType[];
-}
+export default defineComponent({
+  name: "app",
+  setup() {
+    scores: storage.getData('scores') || []
+    watch(
+      (): void => {
+        scores: 'saveData'
+      },
+      {immediate: true}
+    );
+  }
+})
 
-  export default defineComponent({
-    name: 'Jyanken',
-    components: {
-      Game, Score
-    },
-    setup () {
-      const state = reactive<State>({ scores: [] })
-      const pon: ActionPonType = (human: Te) => {
-        const computer: Te = Math.floor(Math.random() * 3)
-      }
-    }
-  })
-
-
-// const name = ref('田中太郎');
 </script>
 
 <template>
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-  <h1>こんにちは！{{ name }}さん！！！！！</h1>
   <div>
     <h1>じゃんけんぽん！</h1>
-    <Game v-bind:actionPon="pon"></Game>
-    <Score v-bind:scores="state.scores"></Score>
+    <game scores="scores"></game>
+    <score scores="scores"></score>
   </div>
 </template>
 
