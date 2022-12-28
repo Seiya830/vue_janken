@@ -1,40 +1,31 @@
-<script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
+<script lang="ts">
+import { defineComponent } from 'vue'
+import type { PropType } from 'vue'
+
+export enum Hand { Guu = 0, Choki, Paa}
+export type ActionPonType = (Hand: number) => void
+
+export default defineComponent({
+  props: {
+    actionPon: {
+      type: Function as PropType<ActionPonType>,
+      required: true
+    }
+  },
+  setup () {
+    return { Hand }
+  }
+})
 </script>
 
 <template>
-  <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
-    </h3>
+  <div>
+    <button v-on:click="actionPon(Hand.Guu)">グー</button>
+    <button v-on:click="actionPon(Hand.Choki)">チョキ</button>
+    <button v-on:click="actionPon(Hand.Paa)">パー</button>
   </div>
 </template>
 
-<style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  top: -10px;
-}
+<style>
 
-h3 {
-  font-size: 1.2rem;
-}
-
-.greetings h1,
-.greetings h3 {
-  text-align: center;
-}
-
-@media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
-  }
-}
 </style>
