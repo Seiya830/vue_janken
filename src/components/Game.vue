@@ -37,8 +37,9 @@ export default defineComponent({
 
 <template>
   <div>
-    <p>{{ result }}</p>
+    <h1>じゃんけんゲーム</h1>
     <p>相手： {{ computer }}</p>
+    <p>結果： {{ result }}</p>
     <button @click="play('グー')">グー</button>
     <button @click="play('チョキ')">チョキ</button>
     <button @click="play('パー')">パー</button>
