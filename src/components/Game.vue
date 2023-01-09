@@ -38,10 +38,26 @@ export default defineComponent({
 <template>
   <div>
     <h1>じゃんけんゲーム</h1>
-    <p>相手： {{ computer }}</p>
-    <p>結果： {{ result }}</p>
+    <p class="text">相手： {{ computer }}</p>
+    <p class="text">結果： {{ result }}</p>
     <button @click="play('グー')">グー</button>
     <button @click="play('チョキ')">チョキ</button>
     <button @click="play('パー')">パー</button>
   </div>
 </template>
+
+<style>
+  h1, .text {
+    text-align: center;
+  }
+
+  button {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
+
+  button:hover {
+    cursor: pointer;
+  }
+</style>
