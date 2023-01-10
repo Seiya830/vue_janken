@@ -4,11 +4,13 @@ import { defineComponent, ref } from 'vue';
 export default defineComponent({
   name: 'Game',
   setup() {
+    //　勝敗の結果を表す変数を定義。初期値は空文字
     const result = ref('');
+    //　コンピュータの手を表す変数を定義
     const computer = ref('');
 
+    // コンピュータの手をランダムに決める
     function play(player: string) {
-       // コンピュータの手をランダムに決める
       const hands = ['グー', 'チョキ', 'パー'];
       computer.value = hands[Math.floor(Math.random() * hands.length)];
 
@@ -40,21 +42,21 @@ export default defineComponent({
     <h1>じゃんけんゲーム</h1>
     <p class="text">相手： {{ computer }}</p>
     <p class="text">結果： {{ result }}</p>
-    <button @click="play('グー')">グー</button>
-    <button @click="play('チョキ')">チョキ</button>
-    <button @click="play('パー')">パー</button>
+    <div class="btn">
+      <button @click="play('グー')">グー</button>
+      <button @click="play('チョキ')">チョキ</button>
+      <button @click="play('パー')">パー</button>
+    </div>
   </div>
 </template>
 
 <style>
-  h1, .text {
+  h1, .text, .btn {
     text-align: center;
   }
 
   button {
-    display: block;
-    margin: 0 auto;
-    margin-bottom: 10px;
+    margin-right: 10px;
   }
 
   button:hover {
